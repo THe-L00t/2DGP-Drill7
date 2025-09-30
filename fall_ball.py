@@ -70,8 +70,8 @@ def update_world():
     grass.update()
     for ball in world:
         ball.update()
-        if ball.y < 80:
-            ball.y = 80
+        if ball.y < 70:
+            ball.y = 70
     pass
 
 
