@@ -26,3 +26,17 @@ class MinBall:
     def update(self):
         self.x -= self.speed
         pass
+
+class MaxBall:
+    def __init__(self):
+        self.image = load_image('ball41x41.png')
+        self.x, self.y = random.randint(0, 1000), 599
+        self.speed = random.randint(1, 10)
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+    def update(self):
+        self.x -= self.speed
+        pass
+
