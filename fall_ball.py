@@ -3,12 +3,12 @@ import random
 
 KPU_WIDTH, KPU_HEIGHT = 1000, 600
 
-class grass:
+class Grass:
     def __init__(self):
         self.image = load_image('grass.png')
 
     def draw(self):
-        self.image.draw(KPU_WIDTH // 2, 30)
+        self.image.draw(400, 30)
 
     def update(self):
         pass
@@ -24,7 +24,7 @@ class MinBall:
         self.image.draw(self.x, self.y)
 
     def update(self):
-        self.x -= self.speed
+        self.y -= self.speed
         pass
 
 class MaxBall:
@@ -37,7 +37,7 @@ class MaxBall:
         self.image.draw(self.x, self.y)
 
     def update(self):
-        self.x -= self.speed
+        self.y -= self.speed
         pass
 
 
@@ -54,10 +54,11 @@ def handle_events():
 
 
 def reset_world():
-    global running, world
+    global running, world, grass
     running = True
     minnum = random.randint(0, 20)
     world = []
+    grass = Grass()
 
     maxballs = [MaxBall() for _ in range(20 - minnum)]
     world += maxballs
@@ -66,11 +67,19 @@ def reset_world():
 
 
 def update_world():
+    grass.update()
+    for ball in world:
+        ball.update()
+        if ball.y < 80:
+            ball.y = 80
     pass
 
 
 def render_world():
     clear_canvas()
+    grass.draw()
+    for ball in world:
+        ball.draw()
 
     update_canvas()
 
