@@ -26,5 +26,3 @@ class MinBall:
     def update(self):
         self.x -= self.speed
         pass
-
-
